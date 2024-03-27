@@ -1,0 +1,212 @@
+<!-- 
+Author: Vipul
+date:
+location
+last updated
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do list</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- <script src="script.js"></script> -->
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Miriam Libre", sans-serif;
+        background-color: skyblue;
+    }
+
+    #container {
+        width: 30vw;
+        min-height: 60vh;
+        margin: auto;
+        background-color: #ffff;
+        padding: 10px;
+    }
+
+    .row h1 {
+        color: #fca311;
+        text-align: center;
+    }
+
+    h2 {
+        text-align: center;
+        color: #fca311;
+        font-weight: 300;
+    }
+
+    #input {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .text {
+        width: 70%;
+        height: 25px;
+    }
+
+    .button {
+        padding: 7px;
+        background-color: purple;
+        border: none;
+        width: 20%;
+        color: #ffff;
+        transition: 0.2s ease-in;
+    }
+
+    .button:hover {
+        transform: scale(1.2);
+    }
+
+    #ul {
+
+        list-style-type: none;
+        text-align: start;
+        padding-left: 0px;
+        width: 94%;
+        margin: auto;
+    }
+
+    li {
+        position: relative;
+
+        padding: 10px 5px;
+
+        height: 16px;
+        color: white;
+        text-transform: uppercase;
+        background-color: #4BC888;
+        margin-bottom: 10px;
+    }
+
+    .hello {
+        position: absolute;
+        right: 10px;
+    }
+
+    @media screen and (max-width:996px) {
+        #container {
+            min-width: 80vw;
+            margin: auto;
+            /* background-color: #fca311; */
+        }
+    }
+
+
+    .checked{
+        text-decoration: line-through;
+        opacity: 0.5;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div class="row">
+            <h1>Todo list&nbsp;<i class="fa-solid fa-list-check"></i></h1>
+        </div>
+        <div id="input">
+            <input type="text" class="text" name="" id="" autofocus>
+            <button onclick="create()" class="button"><i class="fa-solid fa-plus"></i>&nbsp;&nbsp;&nbsp;Add</button>
+        </div>
+        <div class="row">
+            <h2>-Tasks will appear here-</h2>
+        </div>
+        <div class="list">
+            <ul id="ul">
+
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script>
+
+
+        //////////////////////////////////////FUNCTION TO CREATE LIST ITEMS/////////////////////////////////////////////
+
+
+        function create() {
+            let a1 = document.getElementById('container');
+            let u = document.getElementById('ul');
+
+            if (document.querySelector('#input input').value.length === 0) {
+                alert('kindly enter task name');
+            }
+            else {
+                let a2 = document.querySelector('#input input');
+                let b1 = document.createElement('li');
+                b1.classList.add('listitem')
+                let d1 = document.createElement('span');
+                d1.classList.add('hello');
+                let icon = document.createElement('i');
+                icon.classList.add('fa-solid')
+                icon.classList.add('fa-trash')
+
+                b1.innerText = a2.value;
+
+                u.appendChild(b1);
+                b1.appendChild(d1);
+                d1.appendChild(icon);
+                a2.value = '';
+
+
+
+
+                ///////////////////// Function to delete list items //////////////////////////
+                console.log(d1)
+                var current_tasks = document.querySelectorAll(".hello");
+                for (var i = 0; i < current_tasks.length; i++) {
+                    current_tasks[i].onclick = function () {
+                        this.parentNode.remove();
+                    }
+                }
+                var currentli = document.querySelectorAll('.listitem');
+
+                for (var i = 0; i < currentli.length; i++) {
+
+                    currentli[i].onclick = function(){
+                        // this.style.opacity='0.5';
+                        this.classList.toggle('checked');
+                    } 
+                }
+                
+                // for (var i = 0; i < currentli.length; i++) {
+                //     currentli[i] = function dark() {
+                //         this.style.opacity = '0.5' 
+                //     }
+                // }
+
+                // for (var i = 0; i < currentli.length; i++) {
+                //     function dark() {
+                //         this.style.opacity = '0.5' 
+                //     }
+                //     function light() {
+                //         this.style.opacity = '1' 
+                //     }
+                //     currentli[i].onclick = light();
+                //     dark();
+                // }
+
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
